@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal AI Search</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- The moving light background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="search-container">
+        <h1 class="logo">Search<span>Me</span></h1>
+        
+        <div class="search-box">
+            <input type="text" id="user-input" placeholder="Ask me anything..." autocomplete="off">
+            <button id="search-btn">Search</button>
+        </div>
+
+        <div id="ai-response-container">
+            <!-- AI answers will appear here -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
