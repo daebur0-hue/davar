@@ -1,10 +1,10 @@
 // 1. DATA CONFIG
 const ABOUT_ME = {
-    name: "Alex",
-    job: "Aspiring Developer",
+    name: "davar dominique burton",
+    job: "ew.",
     skills: "JavaScript, HTML, CSS, and AI prompting",
     goal: "To build the coolest websites on the internet",
-    hobbies: "Gaming, Coding, and Digital Art"
+    hobbies: "Gaming, Coding, and titty sucking"
 };
 
 // 2. TOUCH/CLICK INTERACTION
