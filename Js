@@ -1,0 +1,76 @@
+// 1. DATA ABOUT YOU (Fill this in!)
+const ABOUT_ME = {
+    name: "Alex",
+    job: "Aspiring Developer",
+    skills: "JavaScript, HTML, CSS, and AI prompting",
+    goal: "To build the coolest websites on the internet",
+    hobbies: "Gaming, Coding, and digital art"
+};
+
+// 2. TOUCH REACTION (The Ring of Light)
+window.addEventListener('click', (e) => {
+    createRing(e.clientX, e.clientY);
+});
+
+window.addEventListener('touchstart', (e) => {
+    createRing(e.touches[0].clientX, e.touches[0].clientY);
+});
+
+function createRing(x, y) {
+    const ring = document.createElement('div');
+    ring.className = 'ring';
+    ring.style.left = `${x}px`;
+    ring.style.top = `${y}px`;
+    document.body.appendChild(ring);
+    setTimeout(() => ring.remove(), 600);
+}
+
+// 3. BACKGROUND ANIMATION (Moving Lights)
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let w, h;
+
+function setSize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', setSize);
+setSize();
+
+let lightX = 0;
+let lightY = 0;
+
+function draw() {
+    ctx.fillStyle = 'rgba(5, 5, 5, 0.1)'; // Trail effect
+    ctx.fillRect(0, 0, w, h);
+    
+    // Moving light logic
+    lightX = w/2 + Math.sin(Date.now() / 1000) * (w/3);
+    lightY = h/2 + Math.cos(Date.now() / 1500) * (h/3);
+
+    let grad = ctx.createRadialGradient(lightX, lightY, 0, lightX, lightY, 400);
+    grad.addColorStop(0, 'rgba(0, 242, 255, 0.15)');
+    grad.addColorStop(1, 'transparent');
+
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+    requestAnimationFrame(draw);
+}
+draw();
+
+// 4. AI SEARCH LOGIC
+const input = document.getElementById('user-input');
+const btn = document.getElementById('search-btn');
+const container = document.getElementById('ai-response-container');
+
+btn.addEventListener('click', () => {
+    const query = input.value.toLowerCase();
+    let answer = "I'm not sure about that. Try asking about my name, skills, or goals!";
+
+    if(query.includes("name")) answer = `My name is ${ABOUT_ME.name}.`;
+    if(query.includes("skill")) answer = `I am good at ${ABOUT_ME.skills}.`;
+    if(query.includes("job") || query.includes("do")) answer = `I'm a ${ABOUT_ME.job}.`;
+    if(query.includes("hobby") || query.includes("fun")) answer = `I like ${ABOUT_ME.hobbies}.`;
+
+    container.innerHTML = `<div class="response-card">${answer}</div>`;
+});
